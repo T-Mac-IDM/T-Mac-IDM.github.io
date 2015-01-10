@@ -7,8 +7,8 @@
 		<meta http-equiv="Cache-Control" content ="no-cache" />
 		<meta HTTP-EQUIV="Expires" CONTENT="Mon, 04 Dec 1999 21:29:02 GMT">
 		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-		<title>LuQi</title>
-		<meta name="author" content="Lu Qi">
+		<title>LZC's blog...</title>
+		<meta name="author" content="Liu Zhao Cheng">
 		<link rel="stylesheet" media="all" href="style.min.css">
 		<script type="text/javascript" src="matrixtext.js"></script>
 
@@ -25,16 +25,16 @@
 <script type="text/javascript" src="main.js"></script>
 </script>
 <script>
-var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Please enter `help` to get started.<br><br>',prompt: 'guest@luqi:~', separator: '$'}, {
+var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Please enter `help` to get started.<br><br>',prompt: 'guest@lzc:~', separator: '$'}, {
 	execute: function(cmd, args) {
 		switch (cmd) {
 			case 'music':
-				return '<audio loop autoplay><source src="YellowFlickerBeat.mp3"/>HTML5 audio not supported</audio>'
+				return '<audio loop autoplay><source src="believe.mp3"/>HTML5 audio not supported</audio>'
 			case 'clear':
 				terminal.clear();
 				return '';
 			case 'about':
-				return 'Hi, I am Lu Qi from China. And I am a student in Shandong University.<br>'
+				return 'Hi, I am Liu Zhao Cheng from China. And I am a engineer in Baidu.<br>'
 			case 'links':
 				return '<a href="http://phonism.github.io/blog" target="_blank">phonism.github.io/blog</a>&#09; This is my blog. Use command `blog` to open it.<br><a href="http://phonism.github.io/wiki" target="_blank">phonism.github.io/wiki</a>&#09;	This is my wiki which record my reading notes. Use command `wiki` to open it.<br><a href="http://phonism.github.io/interview" target="_blank">phonism.github.io/interview</a>&#09; This is my records for preparing interview. Use command `interview` to open it.<br>';
 			case 'help':
