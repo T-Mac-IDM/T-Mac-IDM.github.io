@@ -25,24 +25,29 @@
 <script type="text/javascript" src="main.js"></script>
 </script>
 <script>
+cur_music = -1;
 var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Please enter `help` to get started.<br><br>',prompt: 'guest@lzc:~', separator: '$'}, {
 	execute: function(cmd, args) {
-		cur_music = 0;
 		switch (cmd) {
 			case 'music':
 				return 'my music list is as follows:<br>past<br>present<br>future<br>Please use command play to play one of them...'
 			case 'play':
-				cur_music = 1;
-				alert(cur_music);
-				return 'now is playing past.mp3.<br>use command fly to switch music..<audio loop autoplay><source src="believe.mp3"/>HTML5 audio not supported</audio>'
+				cur_music = 0;
+				return 'now is playing past.mp3.<br>use command fly to switch music..<br>use command stop to turn off the music..<audio loop autoplay><source src="past.mp3"/>HTML5 audio not supported</audio>'
 			case 'fly':
-				switch(cur_music){
+				alert(cur_music)
+				cur_music = cur_music + 1;
+				alert(cur_music);
+				switch(cur_music%3){
+					case 0:
+						return '<audio loop autoplay><source src="past.mp3"/>HTML5 audio not supported</audio>'
 					case 1:
-					cur_music = 2;	
-					alert(cur_music);
-					return '<audio loop autoplay><source src="present.mp3"/>HTML5 audio not supported</audio>'
+						return '<audio loop autoplay><source src="present.mp3"/>HTML5 audio not supported</audio>'
+					case 2:
+						return '<audio loop autoplay><source src="future.mp3"/>HTML5 audio not supported</audio>'
 				}
-				return 
+			case 'stop':
+				cur_music = -1;
 			case 'clear':
 				terminal.clear();
 				return '';
