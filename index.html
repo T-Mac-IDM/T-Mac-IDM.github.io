@@ -27,9 +27,22 @@
 <script>
 var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Please enter `help` to get started.<br><br>',prompt: 'guest@lzc:~', separator: '$'}, {
 	execute: function(cmd, args) {
+		cur_music = 0;
 		switch (cmd) {
 			case 'music':
-				return '<audio loop autoplay><source src="believe.mp3"/>HTML5 audio not supported</audio>'
+				return 'my music list is as follows:<br>past<br>present<br>future<br>Please use command play to play one of them...'
+			case 'play':
+				cur_music = 1;
+				alert(cur_music);
+				return 'now is playing past.mp3.<br>use command fly to switch music..<audio loop autoplay><source src="believe.mp3"/>HTML5 audio not supported</audio>'
+			case 'fly':
+				switch(cur_music){
+					case 1:
+					cur_music = 2;	
+					alert(cur_music);
+					return '<audio loop autoplay><source src="present.mp3"/>HTML5 audio not supported</audio>'
+				}
+				return 
 			case 'clear':
 				terminal.clear();
 				return '';
