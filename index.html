@@ -33,21 +33,21 @@ var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Pleas
 				return 'my music list is as follows:<br>past<br>present<br>future<br>Please use command play to play one of them...'
 			case 'play':
 				cur_music = 0;
-				return 'now is playing past.mp3.<br>use command fly to switch music..<br>use command stop to turn off the music..<audio loop autoplay><source src="past.mp3"/>HTML5 audio not supported</audio>'
+				return 'now is playing past.mp3 to commemorate my firt love in high school...<br>use command fly to switch music..<br>use command stop to turn off the music..<audio loop autoplay id="music_now"><source src="past.mp3"/>HTML5 audio not supported</audio>'
 			case 'fly':
-				alert(cur_music)
+				document.getElementById("music_now").outerHTML="";
 				cur_music = cur_music + 1;
-				alert(cur_music);
 				switch(cur_music%3){
 					case 0:
-						return '<audio loop autoplay><source src="past.mp3"/>HTML5 audio not supported</audio>'
+						return 'current music is past.mp3... <br>To commemorate my firt love in high school ! <audio loop autoplay id="music_now"><source src="past.mp3"/>HTML5 audio not supported</audio>'
 					case 1:
-						return '<audio loop autoplay><source src="present.mp3"/>HTML5 audio not supported</audio>'
+						return 'current music is present.mp3...<br>stay hungry stay foolish ! <audio loop autoplay id="music_now"><source src="present.mp3"/>HTML5 audio not supported</audio>'
 					case 2:
-						return '<audio loop autoplay><source src="future.mp3"/>HTML5 audio not supported</audio>'
+						return 'current music is future.mp3...<br>I have an AI dream ! <audio loop autoplay id="music_now"><source src="future.mp3"/>HTML5 audio not supported</audio>'
 				}
 			case 'stop':
-				cur_music = -1;
+				document.getElementById("music_now").outerHTML="";
+				return 'music is off'
 			case 'clear':
 				terminal.clear();
 				return '';
