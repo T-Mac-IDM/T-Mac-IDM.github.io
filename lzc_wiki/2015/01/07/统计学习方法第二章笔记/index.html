@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>统计学习方法第二章笔记 | Phonism的学习笔记</title>
+  <meta name="author" content="Qi Lu">
+  
+  <meta name="description" content="感知机
+感知机时二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。
+感知机模型
+感知机定义：$$f(x) = sign(w \cdot x + b)$$$w$和$b$称为感知机模型参数，$w$叫做权值向量，$b$叫做偏置，$w \cdot x$叫做$w$和$x$的内">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="统计学习方法第二章笔记"/>
+  <meta property="og:site_name" content="Phonism的学习笔记"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/wiki/atom.xml" title="Phonism的学习笔记" type="application/atom+xml">
+  
+  
+    <link href="/wiki/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/wiki/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/wiki/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/wiki/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/wiki/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/wiki/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/wiki/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/wiki/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/wiki/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/wiki/">Phonism的学习笔记</a><span class="split"></span><span class="title">统计学习方法第二章笔记</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> Jan 7 2015</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  <div class="col-xs-12 col-sm-3 col-md-3 toc"> 
+	<!-- toc -->
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+ 		   generateWikiTOC('.note', '.toc',  2 , 2 );
+		});
+</script>
+  </div><!-- col-md-3 -->
+  
+  
+
+  
+  <div class="col-xs-12 col-sm-9 col-md-9 note">
+	
+
+	  <!-- content -->
+	  <h1 id="感知机">感知机</h1>
+<p>感知机时二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。</p>
+<h2 id="感知机模型">感知机模型</h2>
+<p>感知机定义：<br>$$f(x) = sign(w \cdot x + b)$$<br>$w$和$b$称为感知机模型参数，$w$叫做权值向量，$b$叫做偏置，$w \cdot x$叫做$w$和$x$的内积，$sign$是符号函数。</p>
+<p>感知机是一种线性分类模型，属于判别模型。</p>
+<h2 id="感知机学习策略">感知机学习策略</h2>
+<h3 id="数据集的线性可分">数据集的线性可分</h3>
+<p>如果存在某个超平面$S$, $w \cdot x+b=0$能够将数据集的正实例点和负实例点完全正确地划分到超平面的两侧，则数据集为线性可分数据集。</p>
+<h3 id="感知机学习策略-1">感知机学习策略</h3>
+<p>为了找到能分割数据集的超平面，即确定感知机模型的参数$w$, $b$，需要确定一个学习策略，即定义损失函数并将素食函数极小化。损失函数为误分类点到超平面$S$的总距离。损失函数$L(w,b)$是$w$, $b$的连续可导函数。</p>
+<h2 id="感知机学习算法">感知机学习算法</h2>
+<h3 id="感知机学习算法的原始形式">感知机学习算法的原始形式</h3>
+<p>采用随机梯度下降法不断地极小化目标函数。极小化的过程是一次随机选取一个误分类点使其梯度下降。</p>
+<blockquote>
+<p><strong>算法2.1 (感知机学习算法的原始形式)</strong><br>输入：训练数据集$T= \{ (x_1, y_1), (x_2, y_2), \cdots, (x_N, y_N) \}$，其中$x_i \in X = R^n, y_i \in Y = \{ -1, +1 \}, i = 1, 2, \cdots, N$；学习率$\eta (0 &lt; \eta \leq 1)$；<br>输出：$w, b$；感知机模型$f(x)=sign(w \cdot x + b)$。</p>
+<ol>
+<li>选取初值$w_0$, $b_0$</li>
+<li>在训练集中选取数据$(x_i, y_i)$</li>
+<li>如果$y_i(w \cdot x_i + b) \leq 0$<br>\begin{align}<br>&amp; w \gets w + \eta y_i x_i \\<br>&amp; b \gets b + \eta y_i \\<br>\end{align}</li>
+<li>转至2，直至训练集中没有误分类点。</li>
+</ol>
+</blockquote>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+		
+	
+		
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+	
+		<li class="prev"><a href="/wiki/2015/01/07/统计学习方法第三章笔记/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/wiki/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2015 Qi Lu
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/wiki/js/jquery.imagesloaded.min.js"></script>
+<script src="/wiki/js/gallery.js"></script>
+<script src="/wiki/js/bootstrap.min.js"></script>
+<script src="/wiki/js/jquery.tableofcontents.min.js"></script>
+<script src="/wiki/js/tocgenerator.min.js"></script>
+<script src="/wiki/js/main.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/wiki/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/wiki/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
