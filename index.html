@@ -33,7 +33,7 @@ var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Pleas
 				return 'my music list is as follows:<br>past<br>present<br>future<br>Please use command play to play one of them...'
 			case 'play':
 				cur_music = 0;
-				return 'now is playing past.mp3 to commemorate my firt love in high school...<br>use command fly to switch music..<br>use command stop to turn off the music..<audio loop autoplay id="music_now"><source src="past.mp3"/>HTML5 audio not supported</audio>'
+				return 'now is playing past.mp3 as a memento of my firt love in high school...<br>I like Mr. Turtle's rhyme <br>use command fly to switch music..<br>use command stop to turn off the music..<audio loop autoplay id="music_now"><source src="past.mp3"/>HTML5 audio not supported</audio>'
 			case 'fly':
 				document.getElementById("music_now").outerHTML="";
 				cur_music = cur_music + 1;
