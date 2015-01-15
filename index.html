@@ -29,6 +29,8 @@ cur_music = -1;
 var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Please enter `help` to get started.<br><br>',prompt: 'guest@lzc:~', separator: '$'}, {
 	execute: function(cmd, args) {
 		switch (cmd) {
+			case 'about':
+				return '<p id="aboutme" >Hi, I am Liu Zhao Cheng from China. And I am an engineer in Baidu.</p><br>'
 			case 'music':
 				return 'my music list is as follows:<br>past<br>present<br>future<br>Please use command play to play one of them...'
 			case 'play':
@@ -39,7 +41,7 @@ var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Pleas
 				cur_music = cur_music + 1;
 				switch(cur_music%3){
 					case 0:
-						return 'current music is past.mp3... <br>To commemorate my firt love in high school ! <audio loop autoplay id="music_now"><source src="past.mp3"/>HTML5 audio not supported</audio>'
+						return 'current music is past.mp3... <br>As a memento of my firt love in high school ! <audio loop autoplay id="music_now"><source src="past.mp3"/>HTML5 audio not supported</audio>'
 					case 1:
 						return 'current music is present.mp3...<br>stay hungry stay foolish ! <audio loop autoplay id="music_now"><source src="present.mp3"/>HTML5 audio not supported</audio>'
 					case 2:
@@ -48,11 +50,13 @@ var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Pleas
 			case 'stop':
 				document.getElementById("music_now").outerHTML="";
 				return 'music is off'
+			case 'links':
+				return '<a id="links_blog" href="http://t-mac-idm.github.io/blog" target="_blank">Welcome to my blog !</a>';
 			case 'clear':
-				terminal.clear();
+				document.getElementById("music_now").outerHTML="";
+				document.getElementById("links_blog").outerHTML="";
+				document.getElementById("aboutme").outerHTML="";
 				return '';
-			case 'about':
-				return 'Hi, I am Liu Zhao Cheng from China. And I am an engineer in Baidu.<br>'
 			case 'help':
 				return '<pre>about        return information about me</pre><pre>contact      return the contact information</pre><pre>help         return this information</pre><pre>links        return the links about my sites</pre><pre>tools        return my own projects</pre><pre>game         return the list of my small js games</pre><pre>music        The music will be played</pre><pre>clear        clear the terminal window</pre>';
 			case 'contact':
