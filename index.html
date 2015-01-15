@@ -7,8 +7,8 @@
 		<meta http-equiv="Cache-Control" content ="no-cache" />
 		<meta HTTP-EQUIV="Expires" CONTENT="Mon, 04 Dec 1999 21:29:02 GMT">
 		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-		<title>LZC's blog...</title>
-		<meta name="author" content="Liu Zhao Cheng">
+		<title>LuQi</title>
+		<meta name="author" content="Lu Qi">
 		<link rel="stylesheet" media="all" href="style.min.css">
 		<script type="text/javascript" src="matrixtext.js"></script>
 
@@ -25,34 +25,18 @@
 <script type="text/javascript" src="main.js"></script>
 </script>
 <script>
-cur_music = -1;
-var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Please enter `help` to get started.<br><br>',prompt: 'guest@lzc:~', separator: '$'}, {
+var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Please enter `help` to get started.<br><br>',prompt: 'guest@luqi:~', separator: '$'}, {
 	execute: function(cmd, args) {
 		switch (cmd) {
 			case 'music':
-				return 'my music list is as follows:<br>past<br>present<br>future<br>Please use command play to play one of them...'
-			case 'play':
-				cur_music = 0;
-				return 'now is playing past.mp3 as a memento of my firt love in high school...<br>I like Mr. Turtle's rhyme <br>use command fly to switch music..<br>use command stop to turn off the music..<audio loop autoplay id="music_now"><source src="past.mp3"/>HTML5 audio not supported</audio>'
-			case 'fly':
-				document.getElementById("music_now").outerHTML="";
-				cur_music = cur_music + 1;
-				switch(cur_music%3){
-					case 0:
-						return 'current music is past.mp3... <br>To commemorate my firt love in high school ! <audio loop autoplay id="music_now"><source src="past.mp3"/>HTML5 audio not supported</audio>'
-					case 1:
-						return 'current music is present.mp3...<br>stay hungry stay foolish ! <audio loop autoplay id="music_now"><source src="present.mp3"/>HTML5 audio not supported</audio>'
-					case 2:
-						return 'current music is future.mp3...<br>I have an AI dream ! <audio loop autoplay id="music_now"><source src="future.mp3"/>HTML5 audio not supported</audio>'
-				}
-			case 'stop':
-				document.getElementById("music_now").outerHTML="";
-				return 'music is off'
+				return '<audio loop autoplay><source src="YellowFlickerBeat.mp3"/>HTML5 audio not supported</audio>'
 			case 'clear':
 				terminal.clear();
 				return '';
 			case 'about':
-				return 'Hi, I am Liu Zhao Cheng from China. And I am an engineer in Baidu.<br>'
+				return 'Hi, I am Lu Qi from China. And I am a student in Shandong University.<br>'
+			case 'links':
+				return '<a href="http://phonism.github.io/blog" target="_blank">phonism.github.io/blog</a>&#09; This is my blog. Use command `blog` to open it.<br><a href="http://phonism.github.io/wiki" target="_blank">phonism.github.io/wiki</a>&#09;	This is my wiki which record my reading notes. Use command `wiki` to open it.<br><a href="http://phonism.github.io/interview" target="_blank">phonism.github.io/interview</a>&#09; This is my records for preparing interview. Use command `interview` to open it.<br>';
 			case 'help':
 				return '<pre>about        return information about me</pre><pre>contact      return the contact information</pre><pre>help         return this information</pre><pre>links        return the links about my sites</pre><pre>tools        return my own projects</pre><pre>game         return the list of my small js games</pre><pre>music        The music will be played</pre><pre>clear        clear the terminal window</pre>';
 			case 'contact':
