@@ -53,10 +53,10 @@ var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Pleas
 			case 'links':
 				return '<a id="links_blog" href="http://t-mac-idm.github.io/blog" target="_blank">Welcome to my blog !</a>';
 			case 'clear':
+				terminal.clear();
 				document.getElementById("music_now").outerHTML="";
 				document.getElementById("links_blog").outerHTML="";
 				document.getElementById("aboutme").outerHTML="";
-				terminal.clear();
 				return '';
 			case 'help':
 				return '<pre>about        return information about me</pre><pre>contact      return the contact information</pre><pre>help         return this information</pre><pre>links        return the links about my sites</pre><pre>tools        return my own projects</pre><pre>game         return the list of my small js games</pre><pre>music        The music will be played</pre><pre>clear        clear the terminal window</pre>';
