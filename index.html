@@ -30,7 +30,7 @@ var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Pleas
 	execute: function(cmd, args) {
 		switch (cmd) {
 			case 'about':
-				return '<p id="aboutme" >Hi, I am Zhao Cheng Liu from China. And I am an engineer in Baidu.</p><br>'
+				return '<p id="aboutme" >Hi, I am Zhao Cheng Liu from China. And I am a software engineer in Baidu Beijing.</p><br>'
 			case 'music':
 				return 'my music list is as follows:<br>past<br>present<br>future<br>Please use command play to play one of them...'
 			case 'play':
@@ -56,6 +56,7 @@ var terminal = new Terminal('terminal', {welcome: 'Welcome to my homepage. Pleas
 				document.getElementById("music_now").outerHTML="";
 				document.getElementById("links_blog").outerHTML="";
 				document.getElementById("aboutme").outerHTML="";
+				terminal.clear();
 				return '';
 			case 'help':
 				return '<pre>about        return information about me</pre><pre>contact      return the contact information</pre><pre>help         return this information</pre><pre>links        return the links about my sites</pre><pre>tools        return my own projects</pre><pre>game         return the list of my small js games</pre><pre>music        The music will be played</pre><pre>clear        clear the terminal window</pre>';
